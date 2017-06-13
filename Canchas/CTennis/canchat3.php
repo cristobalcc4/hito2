@@ -149,57 +149,33 @@
                                         <th>S</th>
                                         <th>D</th>
                                       </tr>
-                                      <tr>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">1</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">2</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">3</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">4</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">5</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">6</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">7</button></td>
-                                      </tr>
-                                      <tr>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">8</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">9</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">10</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">11</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">12</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">13</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">14</button></td>
-                                      </tr>
-                                      <tr>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">15</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">16</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">17</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">18</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">19</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">20</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">21</button></td>
-                                      </tr>
-                                       <tr>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">22</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">23</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">24</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">25</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">26</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">27</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">28</button></td>
-                                      </tr>
-                                        <tr>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">29</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">30</button></td>
-                                        <td><button type="button" data-toggle="modal" data-target="#myModal">31</button></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                      </tr>
+
+
                                       
-                                      <!--?php
-                                        foreach ($weeks as $week) {
-                                          echo $week;
-                                        };
-                                      ?-->
+
+                                        <?php 
+                                          $day=1;
+                                          while($day<=30){
+                                            echo"<tr>";
+                                            for($j=1;$j<=7;$j++){
+                                              if($day>=30){
+                                                $j=7;
+                                              }
+                                              echo"<td>";
+                                              echo"<input type='button' class='btn btn-info' data-toggle='modal' data-target='#myModal'".$day."' data-modal='".$day."'name='button".$day."' value='".$day."'>";
+                                              echo"</td>";
+                                              $day++;
+                                            }
+                                            echo"</tr>";
+                                          }
+                                        ?>
+
+                                        
+                                      
+
+                                    
+                                      
+                                      
                                     </table>
 
                                 </div>
@@ -220,14 +196,52 @@
                           <h4 class="modal-title">Horarios disponibles</h4>
                         </div>
                         <div class="modal-body">
-                          <p>
+                          
 
-                          -Horario1 Precio    <button type="button" >Arrendar</button><br>
-                          -Horario2 Precio    <button type="button" >Arrendar</button><br>
-                          -Horario3 Precio    <button type="button" >Arrendar</button><br>
-                          -Horario4 Precio    <button type="button" >Arrendar</button><br>
+                          
+                          
+                          <div class="row col-md-6 col-md-offset-2 custyle">
+                          <table class="table table-striped custab">
+                          <thead>
+                          <!--<a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a> -->
+                              <tr>
+                                  <th>Fecha</th>
+                                  <th>Hora</th>
 
-                          </p>
+                                  <th class="text-center">Reservar</th>
+                              </tr>
+                          </thead>
+                          </tbody>
+
+                                  <?php
+                                     #$con = new mysqli_connect('localhost','root','root','Fisdb');
+                                     $con = mysqli_connect("localhost","nuevo","1234","Fisdb");
+                                     #var_dump($con);
+                                     #or die('Error connecting to MySQL server.');
+                                    $query1 = "SELECT * FROM horarios WHERE id_cancha= '5' AND id_cliente IS NULL";
+
+
+                                     $result = mysqli_query($con,$query1);#cancha de basquetbol 1
+
+                                     #print_r($result);
+
+                                     
+                                     while($row = mysqli_fetch_array($result)){
+                                         echo"<tr>";
+                                             echo"<td>".$row['fecha']."</td>";
+                                             echo"<td>".$row['hora']."</td>";
+                                             echo"<td class='text-center'><a class='btn btn-info btn-xs'><span class='glyphicon glyphicon-edit'></span>Arrendar</a></td>";
+                                          echo"</tr>"; 
+                                     }
+                                  ?>
+                                  
+                          </tbody>
+
+                          </table>
+                          </div>
+                    
+
+                          
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
