@@ -31,7 +31,7 @@
 <body>
 
     <!-- Navigation -->
-    <body>
+    
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
