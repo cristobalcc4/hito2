@@ -1,3 +1,28 @@
+<?php
+require_once("../clases/Usuario.php");
+$u = new Usuarios();
+$canchas=$u->getDatosC();
+$datos=$u->getDatosG();
+?>
+
+
+<?php
+$nombres =array();
+$descriction =array();
+$imagen =array();
+foreach($datos as $dato){
+    $nombres[] = $dato->Nombre;
+    $descripcion[] = $dato->Descripcion;
+    $imagen[] = $dato->Imagen;
+}
+?>
+
+<?php
+$nombreC =array();
+foreach($canchas as $dato){
+    $nombreC[] = $dato->Nombre;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,10 +72,10 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Recintos <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="../Recintos/recinto1.php">Condor rojas norte</a></li>
-                <li><a href="../Recintos/recinto2.php">El Phelps</a></li>
-                <li><a href="../Recintos/recinto3.php">El Massu</a></li>
-                <li><a href="../Recintos/recinto4.php">El NBA</a></li>
+                <li><a href="../Recintos/recinto1.php"><?php echo $nombres[0]?></a></li>
+                <li><a href="../Recintos/recinto2.php"><?php echo $nombres[1]?></a></li>
+                <li><a href="../Recintos/recinto3.php"><?php echo $nombres[2]?></a></li>
+                <li><a href="../Recintos/recinto4.php"><?php echo $nombres[3]?></a></li>
                 
                 
               </ul>
@@ -66,7 +91,7 @@
         <!-- Portfolio Item Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Portfolio Item
+                <h1 class="page-header"><?php echo $nombres[2]?>
                     <small>Item Subheading</small>
                 </h1>
             </div>
@@ -78,13 +103,13 @@
 
             <div class="col-md-8">
                 
-                    <img class="img-responsive" src="http://placehold.it/750x500" alt="">
+                    <img class="img-responsive" src="<?php echo $imagen[2]?>" alt="">
                 
             </div>
 
             <div class="col-md-4">
                 <h3> Descripción</h3>
-                <p>En este recinto han entrenado los mejores tenistas del país, incluyendo a la dupla de Nicolás Massu y Fernando Gonzalez </p>
+                <p><?php echo $descripcion[2]?> </p>
                 
             </div>
 
@@ -100,7 +125,7 @@
 
             <!-- Cancha1 -->
             <div class="col-sm-3 col-xs-6">
-                <h4>De Tenis A</h4>
+                <h4><?php echo $nombreC[3]?></h4>
                 <a href="../Canchas/CTennis/canchat1.php">
                     <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
                 </a>
@@ -108,19 +133,19 @@
 
             <!-- Cancha2 -->
             <div class="col-sm-3 col-xs-6">
-                <h4>De Tenis B</h4>
+                <h4><?php echo $nombreC[4]?></h4>
                 <a href="../Canchas/CTennis/canchat2.php">
                     <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
                 </a>
             </div>
             <div class="col-sm-3 col-xs-6">
-                <h4>De Tenis C</h4>
+                <h4><?php echo $nombreC[5]?></h4>
                 <a href="../Canchas/CTennis/canchat3.php">
                     <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
                 </a>
             </div>
             <div class="col-sm-3 col-xs-6">
-                <h4>De Tenis D</h4>
+                <h4><?php echo $nombreC[6]?></h4>
                 <a href="../Canchas/CTennis/canchat4.php">
                     <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
                 </a>
